@@ -1,4 +1,4 @@
-# Computing load scores from pre-computed conservation scores
+# Calculating load scores from pre-computed conservation scores
 
 Short overview of how to take pre-computed phyloP and phastcons scores from UCSC and use these to compute load scores for the species of interest.
 
