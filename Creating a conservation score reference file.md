@@ -128,3 +128,6 @@ bedtools intersect -a anc_phylop_phastcons.bed  -b all_phylop_phastcons_scores.b
 ```
 
 Now your reference file should be ready to go! 
+
+### References/software used:
+
