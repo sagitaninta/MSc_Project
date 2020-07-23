@@ -1,8 +1,10 @@
-# Creating a reference file for computing load scores from pre-computed conservation scores
+# Computing load scores from pre-computed conservation scores
 
 Short overview of how to take pre-computed phyloP and phastcons scores from UCSC and use these to compute load scores for the species of interest.
 
-## Step 1: Retrieving scores from UCSC
+## Creating a reference file
+
+### Step 1: Retrieving scores from UCSC
 
 Pre-computed conservation scores are available from the UCSC website for different subsets of species (http://hgdownload.cse.ucsc.edu/goldenPath/hg19/). 
 The following will use the placental mammal subset of phastcons and phyloP scores from the 46-way vertebrate alignment:  
@@ -16,7 +18,7 @@ rsync -avz --progress rsync://hgdownload.soe.ucsc.edu/goldenPath/hg19/phyloP46wa
 rsync -avz --progress rsync://hgdownload.soe.ucsc.edu/goldenPath/hg19/phyloP46way/placentalMammals/*.wigFix.gz . # All score files mapped to the human genome
 ```
 
-## Step 2: Converting files to bed format
+### Step 2: Converting files to bed format
 
 As scores are in a compressed wigFix format, they need converting to a bed format using the wig2bed function from bedops.  
 1. Create a list of all the wigFix files you want to convert to bed files and run wig2bed:
@@ -31,7 +33,7 @@ do
 done < wig_list.txt
 ```
 
-## Step 3: Filtering bed files for scores above or below a certain threshold
+### Step 3: Filtering bed files for scores above or below a certain threshold
 
 The next step is to filter the bed files for scores above a threshold (e.g. pre-determined value, top or bottom 5% of values etc).
 1. Create a list of all the bed files you want to filter:
