@@ -1,6 +1,4 @@
-# MSc_Project
+# MSc_Project - Overview
 
-# Repository of scripts and code for MSc project 
-
-# Section One - PhyloP scores 
+Collection of all code written for MSc project 
 
