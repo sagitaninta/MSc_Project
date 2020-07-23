@@ -51,7 +51,7 @@ done < bed_list.txt
 ### Step 4: Lifting over scores to the genome of interest
 
 As scores are for an alignment to the human genome, these need to be lifted over to the reference genome of the species of interest.  
-This can be done using the UCSC liftOver tool or using the r package rtracklayer. Chain files for lifting over co-ordinates from hg19  
+This can be done using the UCSC liftOver tool or using the R package rtracklayer. Chain files for lifting over co-ordinates from hg19  
 to other species can be found at http://hgdownload.cse.ucsc.edu/goldenpath/hg19/liftOver/
 
 1. Download the chain file for the species of interest (in this case the dog reference genome):
@@ -94,7 +94,16 @@ out_file <- paste("CanFam_",args[1], sep = "")
 # Export the GRange object to bed
 export(test_out_grange, out_file, format = "bed")
 ```
+### Step 5: Merging bed files and sorting
+Now the bed files with scores have been lifted over. these can be merged and sorted using bedops:
+```linux
+bedops --everything CanFam_filtered_chr* | sort-bed - --max-mem 10G > all_scores_sorted.bed
+```
 
+### Step 6: Filtering out duplicates
+
+The liftover process can lead to multiple co-ordinates and therefore scores mapping to the same position in the dog reference genome so these need  
+removing once all scores are in the same sorted bed file.
 
 
 
