@@ -60,6 +60,8 @@ rsync -avz --progress rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/h
 ```
 2a. Run command line liftOver:
 
+OR  
+
 2b. Run R implementation of liftOver:
 ```linux
 # Loop to run R script on each bed file:
