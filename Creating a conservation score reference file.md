@@ -127,4 +127,4 @@ bedtools getfasta -fi AndeanFox_canFam3.1.fa -bed - -bedOut
 bedtools intersect -a anc_phylop_phastcons.bed  -b all_phylop_phastcons_scores.bed -wa -wb -sorted | cut -f 1-4,8-9 > anc_scores_ref.bed
 ```
 
-This file serves as a reference file to compute scores with 
+Now your reference file should be ready to go! 
