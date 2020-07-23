@@ -102,9 +102,16 @@ bedops --everything CanFam_filtered_chr* | sort-bed - --max-mem 10G > all_scores
 
 ### Step 6: Filtering out duplicates
 
-The liftover process can lead to multiple co-ordinates and therefore scores mapping to the same position in the dog reference genome so these need  
-removing once all scores are in the same sorted bed file.
-
+The liftover process can lead to multiple co-ordinates and therefore scores mapping to the same position so these need  
+removing. 
+1. Create a list of duplicate positions (keep only first 3 columns of the bed file):
+```linux
+awk '{print $1 "\t" $2 "\t" $3}' all_scores_sorted.bed | uniq -d > dup_positions.txt
+```
+2. Use bedops to remove duplicate positions using the dup_positions.txt file created:
+```linux
+bedops -n all_scores_sorted.bed dup_positions.txt > filtered_all_scores_sorted.bed
+```
 
 
 
