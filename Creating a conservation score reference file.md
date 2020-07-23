@@ -48,5 +48,51 @@ do
 done < bed_list.txt
 ```
 
+### Step 4: Lifting over scores to the genome of interest
+
+As scores are for an alignment to the human genome, these need to be lifted over to the reference genome of the species of interest.  
+This can be done using the UCSC liftOver tool or using the r package rtracklayer. Chain files for lifting over co-ordinates from hg19  
+to other species can be found at http://hgdownload.cse.ucsc.edu/goldenpath/hg19/liftOver/
+
+1. Download the chain file for the species of interest (in this case the dog reference genome):
+```linux
+rsync -avz --progress rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/hg19ToCanFam3.over.chain.gz . 
+```
+2a. Run command line liftOver:
+
+2b. Run R implementation of liftOver:
+```linux
+# Loop to run R script on each bed file:
+while read -r line 
+do
+        Rscript liftOver.R  $line 
+done < bed_list.txt
+
+```R
+# Load rtracklayer and command line args
+library(rtracklayer)
+args <- commandArgs(TRUE)
+
+# Import chain file:
+dog_chain <- import.chain("hg19ToCanFam3.over.chain")
+
+# Import bed file with hg19 co-ordinates to be lifted over:
+sample_bed <- import.bed(args[1])
+
+# Liftover from hg19 to new genome co-ordinates:
+liftover_out <- liftOver(sample_bed, dog_chain)
+
+# Unlist to go from GRangesList to GRanges object:
+test_out_grange <- unlist(liftover_out)
+
+# Set name for out file
+out_file <- paste("CanFam_",args[1], sep = "")
+
+# Export the GRange object to bed
+export(test_out_grange, out_file, format = "bed")
+```
+
+
+
 
 
