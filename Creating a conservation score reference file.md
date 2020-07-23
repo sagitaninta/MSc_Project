@@ -113,5 +113,18 @@ awk '{print $1 "\t" $2 "\t" $3}' all_scores_sorted.bed | uniq -d > dup_positions
 bedops -n all_scores_sorted.bed dup_positions.txt > filtered_all_scores_sorted.bed
 ```
 
+### Step 7: Intersecting phyloP scores, phastcons scores and ancestral alleles/reference alleles
 
+To be able to use these scores to calculate a load score, we need to know what the ancestral state at each position is. We can either use the reference genome  
+alleles or outgroups to determine these (see x for one way to do this). Once you have these in a file, they can be intersected with the bed file containing  
+the scores. If using both phyloP and phastcons scores, these can first be overlapped into a single file.
+1. Convert fasta file to bed file for co-ordinates of interest (ignore if already have these in a bed file):
+```linux
+bedtools getfasta -fi AndeanFox_canFam3.1.fa -bed - -bedOut
+```
+2. Use bedtools to intersect scores and ancestral/reference alleles:
+```linux
+bedtools intersect -a anc_phylop_phastcons.bed  -b all_phylop_phastcons_scores.bed -wa -wb -sorted | cut -f 1-4,8-9 > anc_scores_ref.bed
+```
 
+This file serves as a reference file to compute scores with 
