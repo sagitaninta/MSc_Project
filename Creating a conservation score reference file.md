@@ -34,11 +34,17 @@ done < wig_list.txt
 ## Step 3: Filtering bed files for scores above or below a certain threshold
 
 The next step is to filter the bed files for scores above a threshold (e.g. pre-determined value, top or bottom 5% of values etc).
-This can easily be done using awk:
+1. Create a list of all the bed files you want to filter:
+```linux
+ls -l *.bed | awk '{ print $NF}' > bed_list.txt
+```
+2. Filter out scores of interest using awk:
 ```linux
 while read -r line 
 do
-        awk '{ if ( $5 >= 0.43 ) { print } }' $line > $filtered_{line}  # Change threshold 
+        awk '{ if ( $5 >= 0.43 ) { print } }' $line > $filtered_{line}  # Change threshold score as required (I've used 0.43 for phastcons and 1.5 for phylop)
 done < bed_list.txt
 ```
+
+
 
