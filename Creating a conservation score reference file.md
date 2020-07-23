@@ -68,7 +68,7 @@ do
         Rscript liftOver.R  $line 
 done < bed_list.txt
 ```
-
+liftOver.R content:
 ```R
 # Load rtracklayer and command line args
 library(rtracklayer)
