@@ -5,8 +5,6 @@ Short overview of how to take pre-computed phyloP and phastcons scores from UCSC
 ## Step 1: Retrieving scores from UCSC
 
 Pre-computed conservation scores are available from the UCSC website for different subsets of species (http://hgdownload.cse.ucsc.edu/goldenPath/hg19/). 
-The following will use the placental mammal subset of phastcons and phyloP scores from the 46-way vertebrate alignment:
-
-http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phyloP46way/
-
+The following will use the placental mammal subset of phastcons and phyloP scores from the 46-way vertebrate alignment:  
+http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phyloP46way/  
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phastCons46way/
