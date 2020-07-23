@@ -67,6 +67,7 @@ while read -r line
 do
         Rscript liftOver.R  $line 
 done < bed_list.txt
+```
 
 ```R
 # Load rtracklayer and command line args
