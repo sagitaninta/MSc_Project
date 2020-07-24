@@ -61,11 +61,11 @@ One way to obtain aheterozygosity estimate is using the realSFS function in ANGS
 we need the reference genome for the species (or a closely related one) and optionally an ancestral genome if you want to compute the  
 frequency of ancestral homozygous, heterozygous or derived homozygous rather than a folded spectrum (homozygous or heterozygous). 
 
-1. Run angsd to generate a site allele frequency file:  
+1. Run angsd to generate a site allele frequency file:
 ```linux
 angsd -i $BAM -r chr10 -anc $REF -ref $REF -C 50 -minQ 20 -minMapQ 30 -dosaf 1 -fold 1 -GL 2 -out ${BAM%\.bam}
 ```  
-As we are folding the spectrum, we can provide the reference genome for both the -anc and -ref parameters.  
+   As we are folding the spectrum, we can provide the reference genome for both the -anc and -ref parameters.  
 
 2. Run realSFS to get the sfs estimates:
 ```linux
@@ -94,6 +94,21 @@ import numpy as np
 2. Define functions to use in the script:  
     a.) Prior calculator
     ```python
+    def prior_calculator(heterozygosity):
+        "Calculate homozygous and heterozygous priors from input heterozygosity value"
+        het = np.divide(heterozygosity, 6.0)
+        q = np.subtract(1.0, heterozygosity)
+        hom = np.divide(q, 4.0)
+        priors = [hom, het, het, het, hom, het, het, hom, het, hom]
+        return priors
+        ```
+    b.)
+    c.)
+    d.)
+    e.)
+    
+    
+    
     
 
 
