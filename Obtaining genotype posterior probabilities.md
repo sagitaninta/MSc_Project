@@ -143,7 +143,7 @@ import numpy as np
         with open(file, "a") as target_file:
                 target_file.write(line)
     ```
-3.  USe the functions to get scores for each position:
+3.  Use the functions to get scores for each position:
     a.) Specify input and output files from command line arguments
     ```python
     glf_file = sys.argv[1]
@@ -160,7 +160,7 @@ import numpy as np
         priors = prior_calculator(heterozygosity)   # Comment out if using uniform prior
         for line in glf:
                 gls = float_gls(line)
-                post_probabilities = gl_calculator(gls, priors) # Add in priors if not uniform; if uniform just provide gls (default priors = 0.1)
+                post_probabilities = gl_calculator(gls, priors) # Add in priors if not uniform; if uniform just provide gls
                 bed_pos = str(int(line[1])-1) # Add in 0 based co-ordinate to convert to bed file
                 out_line = [line[0], bed_pos, line[1]] + post_probabilities  
                 out_line = "\t".join(out_line) # Separate values by tabs
@@ -175,8 +175,8 @@ import numpy as np
  time python3 all_genotype_likelihoods_v2.py test_dog.glf test_dog.gpf # Run the script
  gzip ${OUT}.glf # Zip the glf file
  ```
-You should now have a file containing all the posterior probabilities for your sample - you can check this worked ok by comparing the length of the  
-.glf and .gpf file using wc -l as these should have the same number of lines. 
+You should now have a file containing all the posterior probabilities for your sample - you can check this worked ok by comparing the  
+length of the .glf and .gpf file using wc -l as these should have the same number of lines. 
   
     
     
