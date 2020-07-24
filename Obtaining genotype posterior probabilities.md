@@ -5,7 +5,7 @@ this uncertainty in the data is to maintain it in downstream analses and to weig
 probabilities, rather than doing a traditional genotype call. This can be done using ANGSD to obtain genotype likelihoods and  
 then transforming these into posterior probabilities.
 
-## Running ANGSD
+## Running ANGSD to get genotype likelihoods
 
 ### Step 1: Creating a sites file for ANGSD (if running on a subset of the genome)
 
@@ -49,7 +49,50 @@ For a more in depth explanation and proof, see here. (Link)
 
 (Add in equation here)
 
-One way of implementing this equation is using python. 
+According to Bayesian statistics, we can either provide this equation with a uniform prior (i.e. our expection is that all outcomes  
+are equally likely, or provide a prior ourselves. Using uniform priors would give a probability of observing a heterozygous position  
+as 0.6 (6 possible heterozygous genotypes = 0.1 * 6) and of observing a homozygous one only 0.4. We know that observed heterozygosity 
+is normally much lower (e.g. x in humans, y in dogs) and using a uniform prior is therefore likely to inflate the number of heterozygous  
+calls. To avoid this, we can provide our own estimate of heterozygosity. 
+
+### Step 1: Using ANGSD to get an estimated heterozygosity to use as a prior
+
+One way to obtain aheterozygosity estimate is using the realSFS function in ANGSD to calculate a site frequency spectrum. To do this,  
+we need the reference genome for the species (or a closely related one) and optionally an ancestral genome if you want to compute the  
+frequency of ancestral homozygous, heterozygous or derived homozygous rather than a folded spectrum (homozygous or heterozygous). 
+
+1. Run angsd to generate a site allele frequency file:
+```linux
+angsd -i $BAM -r chr10 -anc $REF -ref $REF -C 50 -minQ 20 -minMapQ 30 -dosaf 1 -fold 1 -GL 2 -out ${BAM%\.bam}
+```
+As we are folding the spectrum, we can provide the reference genome for both the -anc and -ref parameters.
+2. Run realSFS to get the sfs estimates:
+```linux
+realSFS $SAF  > ${BAM%\.bam}.ml
+```
+3. Compute heterozygosity from the sfs estimates:
+The output file from realSFS looks something like the below. To gain an estimate of heterozygosity simply divide the first number  
+by the second (double check this) for the folded spectrum.
+
+4. Get bootstrap estimates of the site frequency (optional):
+```linux
+realSFS  $SAF -bootstrap 1000 > ${BAM%\.bam}_bootstraps.ml
+```
+### Step 2: Implement the equation in Python to get posterior probabilities
+
+Now we have a heterozygosity estmate to use as a prior in our equation, we can implement it in python with a .glf file as input.  
+Below is a breakdown of the script used (full script found here). 
+
+1. Import modules needed (time not essential):
+```python
+import time
+import sys
+import csv
+import numpy as np
+```
+2. Define functions to use in the script:
+...a.) Prior calculator 
+
 
 
 
