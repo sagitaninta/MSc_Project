@@ -17,8 +17,9 @@ angsd sites index angsd.file
 
 ### Step 2: Running ANGSD
 
-ANGSD has various options for obtaining genotype likelihoods, all explained on the software's [wiki page](http://www.popgen.dk/angsd/index.php/Genotype_Likelihoods). Below is an    example command using a sites files and specifying a region (remember to index the bam first if using the -r option). This example is  
-using a GATK model (-GL 2) and outputting all 10 genotype likelihoods in a tab separated simple text format (-doGlf 4)
+ANGSD has various options for obtaining genotype likelihoods, all explained on the software's [wiki page](http://www.popgen.dk/angsd/index.php/Genotype_Likelihoods). Below is an  
+example command using a sites files and specifying a region (remember to index the bam first if using the -r option).   
+This example is using a GATK model (-GL 2) and outputting all 10 genotype likelihoods in a tab separated simple text format (-doGlf 4)
 ```linux
 # Specify files:
 BAM=test_dog.bam
