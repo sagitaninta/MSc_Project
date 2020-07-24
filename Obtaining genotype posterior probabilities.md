@@ -101,12 +101,49 @@ import numpy as np
         hom = np.divide(q, 4.0)
         priors = [hom, het, het, het, hom, het, het, hom, het, hom]
         return priors
-        ```
-    b.)
-    c.)
-    d.)
-    e.)
-    
+    ```
+    b.) Convert genotype likelihoods from strings to floats:
+    ```python
+    def float_gls(line):
+        "Extract gls and convert from strings to floats"
+        gls = [float (i) for i in line[2:12]]
+        return gls
+    ```
+    c.) Return the best genotype (score of 0.0):
+    ```python
+    def extract_best_genotype(gls):
+        "Return genotype with likelihood ratio = 0.0 (best genotype)"
+        genotypes = ["AA", "AC", "AG", "AT", "CC", "CG", "CT", "GG", "GT", "TT"] 
+        for value in range(0,10):
+                if gls[value] == 0.0:
+                        best_geno = genotypes[value]
+        return best_geno
+    ```
+    d.) Calculate posterior probabilties for all 10 genotypes or just the one with the highest likelihood:
+    ```python
+    def gl_calculator(gls, priors = [0.1]*10):      # Default = uniform prior
+        "Calculate genotype likelihoods for all genotypes"
+        #np.set_printoptions(linewidth=np.inf)
+        values = np.power(10, gls)                  # Raise 10 to power of gls
+        values = np.multiply(values, priors)        # Multiply by prior
+        sum_prob = np.sum(values)
+        probabilities = np.divide(values, sum_prob) # Obtain list of probabilities by value/sum_prob
+        probabilities = np.round(probabilities, decimals = 5)
+        # If just want Pr of best genotype use:
+        #best_pr = str(np.amax(probabilities))
+        #return best_pr
+        # Or if want Pr of all genotypes use:
+        list_pr = probabilities.tolist()
+        list_pr = [str(i) for i in list_pr]
+        return list_pr
+    ```
+    e.) Append line to .gpf file (genotype probability file):
+    ```python
+    def append_line(file, line):
+        with open(file, "a") as target_file:
+                target_file.write(line)
+    ```
+3.  
     
     
     
