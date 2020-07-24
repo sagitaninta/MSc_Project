@@ -25,14 +25,12 @@ ANGSD has various options for obtaining genotype likelihoods, all explained on t
 example command using a sites files and specifying a region (remember to index the bam first if using the -r option). This  
 example is using a GATK model (-GL 2) and outputting all 10 genotype likelihoods in a tab separated format (-doGlf 4).
 
-1. Specify files:
+1. Specify files and run ANGSD with parameters of choice:
 ```linux
 BAM=test_dog.bam
 SITES=dog_angsd.file
 REF=Canis_familiaris.CanFam3.1.dna.toplevel.fa 
-```
-2. Run ANGSD with parameters of choice:
-```linux
+
 angsd -i $BAM -sites $SITES -r chr10 -out $OUT -minQ 20 -minMapQ 20 -remove_bads 1 -ref $REF -GL 2 -doGlf 4
 ```
 
