@@ -9,9 +9,13 @@ then transforming these into posterior probabilities.
 
 ANGSD allows filtering by both chromsome (requires an indexed bam) or by particular sites. This requires an angsd file which  
 can easily be created from a bed file using awk and then indexed with angsd http://www.popgen.dk/angsd/index.php/Sites 
-```linux
-awk '{print $1 "\t" $2+1 "\t" $3}' input.bed > angsd.file #Changes 0-based co-ordinate to one based
 
+1. Use awk to convert bed file with co-ordinates into an angsd site file:
+```linux
+awk '{print $1 "\t" $2+1 "\t" $3}' input.bed > angsd.file
+```
+2. Index the file:
+```linux
 angsd sites index angsd.file
 ```
 
@@ -20,12 +24,15 @@ angsd sites index angsd.file
 ANGSD has various options for obtaining genotype likelihoods, all explained on the software's [wiki page](http://www.popgen.dk/angsd/index.php/Genotype_Likelihoods). Below is an  
 example command using a sites files and specifying a region (remember to index the bam first if using the -r option). This  
 example is using a GATK model (-GL 2) and outputting all 10 genotype likelihoods in a tab separated format (-doGlf 4).
+
+1. Specify files:
 ```linux
-# Specify files:
 BAM=test_dog.bam
 SITES=dog_angsd.file
 REF=Canis_familiaris.CanFam3.1.dna.toplevel.fa 
-# Run angsd with parameters of choice:
+```
+2. Run ANGSD with parameters of choice:
+```linux
 angsd -i $BAM -sites $SITES -r chr10 -out $OUT -minQ 20 -minMapQ 20 -remove_bads 1 -ref $REF -GL 2 -doGlf 4
 ```
 
