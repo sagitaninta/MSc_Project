@@ -65,7 +65,8 @@ frequency of ancestral homozygous, heterozygous or derived homozygous rather tha
 ```linux
 angsd -i $BAM -r chr10 -anc $REF -ref $REF -C 50 -minQ 20 -minMapQ 30 -dosaf 1 -fold 1 -GL 2 -out ${BAM%\.bam}
 ```
-As we are folding the spectrum, we can provide the reference genome for both the -anc and -ref parameters.
+   As we are folding the spectrum, we can provide the reference genome for both the -anc and -ref parameters.  
+
 2. Run realSFS to get the sfs estimates:
 ```linux
 realSFS $SAF  > ${BAM%\.bam}.ml
@@ -90,8 +91,10 @@ import sys
 import csv
 import numpy as np
 ```
-2. Define functions to use in the script:
-...a.) Prior calculator 
+2. Define functions to use in the script:  
+    a.) Prior calculator
+    ```python
+    
 
 
 
