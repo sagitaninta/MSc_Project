@@ -82,7 +82,7 @@ realSFS  $SAF -bootstrap 1000 > ${BAM%\.bam}_bootstraps.ml
 ### Step 2: Implement the equation in Python to get posterior probabilities
 
 Now we have a heterozygosity estmate to use as a prior in our equation, we can implement it in python with a .glf file as input.  
-Below is a breakdown of the script used (full script found here). 
+Below is a breakdown of the script used (full script found here) and the command line argument used to run it. 
 
 1. Import modules needed (time not essential):
 ```python
@@ -102,14 +102,14 @@ import numpy as np
         priors = [hom, het, het, het, hom, het, het, hom, het, hom]
         return priors
     ```
-    b.) Convert genotype likelihoods from strings to floats:
+    b.) Convert genotype likelihoods from strings to floats
     ```python
     def float_gls(line):
         "Extract gls and convert from strings to floats"
         gls = [float (i) for i in line[2:12]]
         return gls
     ```
-    c.) Return the best genotype (score of 0.0):
+    c.) Return the best genotype (score of 0.0)
     ```python
     def extract_best_genotype(gls):
         "Return genotype with likelihood ratio = 0.0 (best genotype)"
@@ -119,7 +119,7 @@ import numpy as np
                         best_geno = genotypes[value]
         return best_geno
     ```
-    d.) Calculate posterior probabilties for all 10 genotypes or just the one with the highest likelihood:
+    d.) Calculate posterior probabilties for all 10 genotypes or just the one with the highest likelihood
     ```python
     def gl_calculator(gls, priors = [0.1]*10):      # Default = uniform prior
         "Calculate genotype likelihoods for all genotypes"
@@ -137,13 +137,47 @@ import numpy as np
         list_pr = [str(i) for i in list_pr]
         return list_pr
     ```
-    e.) Append line to .gpf file (genotype probability file):
+    e.) Append line to .gpf file (genotype probability file)
     ```python
     def append_line(file, line):
         with open(file, "a") as target_file:
                 target_file.write(line)
     ```
-3.  
+3.  USe the functions to get scores for each position:
+    a.) Specify input and output files from command line arguments
+    ```python
+    glf_file = sys.argv[1]
+    output_file = sys.argv[2]
+    ```
+    b.) Specify heterozygosity value if using non-uniform prior
+    ```python
+    heterozygosity = 0.0014
+    ```
+    c.) Calculate posterior probabilities and write to file for each position
+    ```python
+    with open(glf_file, "r") as file:
+        glf = csv.reader(file, delimiter = "\t")
+        priors = prior_calculator(heterozygosity)   # Comment out if using uniform prior
+        for line in glf:
+                gls = float_gls(line)
+                post_probabilities = gl_calculator(gls, priors) # Add in priors if not uniform; if uniform just provide gls (default priors = 0.1)
+                bed_pos = str(int(line[1])-1) # Add in 0 based co-ordinate to convert to bed file
+                out_line = [line[0], bed_pos, line[1]] + post_probabilities  
+                out_line = "\t".join(out_line) # Separate values by tabs
+                out_line = out_line + "\n" # Add new line character
+                append_line(output_file, out_line)  # Add complete line to out file
+
+    ```
+ 4. Run the script from command line, specifying input and output files as arguments:
+ ```linux
+ gunzip ${OUT}.glf.gz # Unzip the glf file for reading
+ source ~/python_env/bin/activate # Activate yor conda/python environment if needed
+ time python3 all_genotype_likelihoods_v2.py test_dog.glf test_dog.gpf # Run the script
+ gzip ${OUT}.glf # Zip the glf file
+ 
+You should now have a file containing all the posteior probabilities - you can check this worked ok by comparing the length of the .glf and .gpf  
+file as these should have the same number of lines.
+  
     
     
     
