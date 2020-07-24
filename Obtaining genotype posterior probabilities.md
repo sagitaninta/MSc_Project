@@ -178,7 +178,7 @@ import numpy as np
 You should now have a file containing all the posterior probabilities for your sample - you can check this worked ok by comparing the  
 length of the .glf and .gpf file using wc -l as these should have the same number of lines. 
   
- ## References/ software used: 
+ ### References/ software used: 
     
     
 
