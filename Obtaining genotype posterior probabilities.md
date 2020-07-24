@@ -174,9 +174,9 @@ import numpy as np
  source ~/python_env/bin/activate # Activate yor conda/python environment if needed
  time python3 all_genotype_likelihoods_v2.py test_dog.glf test_dog.gpf # Run the script
  gzip ${OUT}.glf # Zip the glf file
- 
+ ```
 You should now have a file containing all the posterior probabilities for your sample - you can check this worked ok by comparing the length of the  
-.glf and .gpf file as these should have the same number of lines.
+.glf and .gpf file using wc -l as these should have the same number of lines.
   
     
     
