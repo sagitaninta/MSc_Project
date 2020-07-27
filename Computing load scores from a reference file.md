@@ -97,7 +97,7 @@ with open(bed_file, "r") as file:
                                 phastcons_hom_pr += pr_hom # Add pr if has a phastcons score for position
                         total_hom_pr += pr_hom # Add pr hom to hom total
 ```
-6. Write scores and numeb of homozygous positions to file:
+6. Write scores and number of homozygous positions to file:
 ```python
 with open(out_file, "w") as file:
         (file.write(sample_name + "\t" + str(total_phylop) + "\t" + str(total_phastcons) + "\t" +
