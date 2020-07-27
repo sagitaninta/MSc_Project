@@ -11,7 +11,7 @@ The following will use the placental mammal subset of phastcons and phyloP score
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phyloP46way/placentalMammals/  
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phastCons46way/placentalMammals/
 
-These folders contain a separate wigFix file for either phyloP or phastcons scores for each position in the alignment, aligned to human chromosomes and scaffolds. 
+These folders contain a wigFix files with either phyloP or phastcons scores for each position in the alignment, aligned to human chromosomes and scaffolds. 
 These can be downloaded to a location of your choice using rsync:
 ```linux
 rsync -avz --progress rsync://hgdownload.soe.ucsc.edu/goldenPath/hg19/phyloP46way/placentalMammals/chrY.phyloP46way.placental.wigFix.gz . # Just scores mapping to chrY of the human genome
