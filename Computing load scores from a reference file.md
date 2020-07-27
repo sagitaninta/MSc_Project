@@ -104,3 +104,16 @@ with open(out_file, "w") as file:
         str(total_hom_pr) + "\t" + str(phylop_hom_pr) + "\t" + str(phastcons_hom_pr) + "\t" +
         str(total_phylop/phylop_hom_pr) + "\t" + str(total_phastcons/phastcons_hom_pr) + "\n"))
 ```
+
+7. Run the script from the command line:
+```linux
+time python 06_07_mut_load_calculator_v2.py ${OUT}_auto.bed ${OUT}_auto_load_scores.txt
+```
+
+### Step 3: Check the load score file:
+
+The load score file generated above should look something like this:
+
+If you have multiple samples you want to compare, these files can be combined using cat:
+
+
