@@ -57,7 +57,7 @@ calls. To avoid this, we can provide our own estimate of heterozygosity.
 
 ### Step 1: Using ANGSD to get an estimated heterozygosity to use as a prior
 
-One way to obtain aheterozygosity estimate is using the realSFS function in ANGSD to calculate a site frequency spectrum. To do this,  
+One way to obtain a heterozygosity estimate is using the realSFS function in ANGSD to calculate a site frequency spectrum. To do this,  
 we need the reference genome for the species (or a closely related one) and optionally an ancestral genome if you want to compute the  
 frequency of ancestral homozygous, heterozygous or derived homozygous rather than a folded spectrum (homozygous or heterozygous). 
 
