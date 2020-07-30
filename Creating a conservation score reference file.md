@@ -1,6 +1,6 @@
 # Calculating load scores from pre-computed conservation scores
 
-Short overview of how to take pre-computed phyloP and phastcons scores from UCSC and use these to compute load scores for a species of interest.
+Short overview of how to take pre-computed phyloP and phastcons scores from the UCSC website and use these to compute load scores for a species of interest.
 
 ## Creating a reference file
 
@@ -11,8 +11,8 @@ The following will use the placental mammal subset of phastcons and phyloP score
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phyloP46way/placentalMammals/  
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phastCons46way/placentalMammals/
 
-These folders contain a wigFix files with either phyloP or phastcons scores for each position in the alignment, aligned to human chromosomes and scaffolds. 
-These can be downloaded to a location of your choice using rsync:
+These folders contain wigFix files with either phyloP or phastcons scores for each position in the alignment, aligned to human chromosomes and scaffolds. 
+These can be downloaded using rsync:
 ```linux
 rsync -avz --progress rsync://hgdownload.soe.ucsc.edu/goldenPath/hg19/phyloP46way/placentalMammals/chrY.phyloP46way.placental.wigFix.gz . # Just scores mapping to chrY of the human genome
 rsync -avz --progress rsync://hgdownload.soe.ucsc.edu/goldenPath/hg19/phyloP46way/placentalMammals/*.wigFix.gz . # All score files mapped to the human genome
