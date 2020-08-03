@@ -6,7 +6,7 @@ Short overview of how to take pre-computed phyloP and phastcons scores from the 
 
 ### Step 1: Retrieving scores from UCSC
 
-Pre-computed conservation scores are available from the UCSC website for different subsets of species (http://hgdownload.cse.ucsc.edu/goldenPath/hg19/). 
+Pre-computed conservation scores are available from the UCSC website for different subsets of species (http://hgdownload.cse.ucsc.edu/goldenPath/hg19/).
 The following will use the placental mammal subset of phastcons and phyloP scores from the 46-way vertebrate alignment:  
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phyloP46way/placentalMammals/  
 http://hgdownload.cse.ucsc.edu/goldenPath/hg19/phastCons46way/placentalMammals/
@@ -104,7 +104,7 @@ bedops --everything CanFam_filtered_chr* | sort-bed - --max-mem 10G > all_scores
 ### Step 6: Filtering out duplicates
 
 The liftover process can lead to multiple co-ordinates and therefore scores mapping to the same position so these need  
-removing. 
+removing from the bed file:
 1. Create a list of duplicate positions (keep only first 3 columns of the bed file):
 ```linux
 awk '{print $1 "\t" $2 "\t" $3}' all_scores_sorted.bed | uniq -d > dup_positions.txt
@@ -117,7 +117,7 @@ bedops -n all_scores_sorted.bed dup_positions.txt > filtered_all_scores_sorted.b
 ### Step 7: Intersecting phyloP scores, phastcons scores and ancestral alleles/reference alleles
 
 To be able to use these scores to calculate a load score, we need to know what the ancestral state at each position is. We can either use the reference
-genome alleles or outgroups to determine these (see x for one way to do this). Once you have these in a file, they can be intersected with the bed file
+genome alleles or outgroups to determine these (add link in with script for doing this). Once you have these in a file, they can be intersected with the bed file
 containing the scores. If using both phyloP and phastcons scores, these can first be overlapped into a single file.  
 1. Convert fasta file to bed file for co-ordinates of interest (ignore if already have these in a bed file):
 ```linux
