@@ -20,7 +20,7 @@ This creates a bed file looking like this:
 We can now use a python script that takes the bed file created in the last step and computes a load score across the
 genome from this. The script essentially works by multiplying the probability of having a homozygous tranversion by
 the conservation score at each position. The script also calculates the probability of observing a reference homozygous 
-genotype for that position. These scores are then added to running totals. A break down of the script and the command
+genotype for that position. These scores are then added to running totals. Below is a break down of the script and the command
 line argument used to run it.
 
 1. Import modules:
@@ -113,6 +113,7 @@ time python 06_07_mut_load_calculator_v2.py ${OUT}_auto.bed ${OUT}_auto_load_sco
 ### Step 3: Check the load score file:
 
 The load score file generated above should look something like this:
+(Add in image)
 
 If you have multiple samples you want to compare, these files can be combined using cat:
 
