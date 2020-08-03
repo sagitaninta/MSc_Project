@@ -23,7 +23,7 @@ rsync -avz --progress rsync://hgdownload.soe.ucsc.edu/goldenPath/hg19/phyloP46wa
 As scores are in a compressed wigFix format, they need converting to a bed format using the wig2bed function from bedops.  
 1. Create a list of all the wigFix files you want to convert to bed files and run wig2bed:
 ```linux
-ls -l *wigFix.gz | awk '{ print $NF}' > wig_list.txt
+ls *wigFix.gz > wig_list.txt
 ```
 2. Use a loop to convert to bed files:  
 ```linux
@@ -38,13 +38,13 @@ done < wig_list.txt
 The next step is to filter the bed files for scores above a threshold (e.g. pre-determined value, top or bottom 5% of values etc).
 1. Create a list of all the bed files you want to filter:
 ```linux
-ls -l *.bed | awk '{ print $NF}' > bed_list.txt
+ls *.bed > bed_list.txt
 ```
 2. Filter out scores of interest using awk:
 ```linux
 while read -r line 
 do
-        awk '{ if ( $5 >= 0.43 ) { print } }' $line > $filtered_{line}  # Change threshold score as required (I've used 0.43 for phastcons and 1.5 for phylop)
+        awk '{ if ( $5 >= 0.43 ) { print } }' $line > filtered_${line}  # Change threshold score as required (I've used 0.43 for phastcons and 1.5 for phylop)
 done < bed_list.txt
 ```
 
