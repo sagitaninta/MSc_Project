@@ -114,7 +114,7 @@ awk '{print $1 "\t" $2 "\t" $3}' all_scores_sorted.bed | uniq -d > dup_positions
 bedops -n all_scores_sorted.bed dup_positions.txt > filtered_all_scores_sorted.bed
 ```
 
-### Step 7: Intersecting phyloP scores, phastcons scores and ancestral alleles/reference alleles
+### Step 7: Intersecting phyloP scores, phastcons scores and ancestral alleles/reference alleles (Re-do/expand on)
 
 To be able to use these scores to calculate a load score, we need to know what the ancestral state at each position is. We can either use the reference
 genome alleles or outgroups to determine these (add link in with script for doing this). Once you have these in a file, they can be intersected with the bed file
