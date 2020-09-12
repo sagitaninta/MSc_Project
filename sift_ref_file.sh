@@ -52,9 +52,9 @@ sed 's/\t\./\t1/g' > ${CHR}_sift_scores.bed
 
 
 # Remove tmp files:
-#rm cds.bed
-#rm A_*
-#rm C_*
-#rm G_*
-#rm T_*
+rm cds.bed
+rm A_*
+rm C_*
+rm G_*
+rm T_*
 
