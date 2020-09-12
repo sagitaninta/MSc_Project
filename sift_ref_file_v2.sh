@@ -8,7 +8,6 @@ mv $1 $CHR
 cd $CHR
 
 ## Filter out cds and intersect with ancestral alleles:
-
 gunzip -c $1 | awk '$3~"CDS"' | grep -v ncRNA_gene | grep -v pseudo | \
 sort -k1,1 -k4,4n | bedtools merge -i - | bedops --chop - | sed 's/^/chr/' > ${CHR}_cds_positions.bed
 
@@ -60,11 +59,9 @@ bedtools intersect -a - -b ${CHR}_G_sift_min.bed -loj -sorted | cut -f 1-6,10 | 
 bedtools intersect -a - -b ${CHR}_T_sift_min.bed -loj -sorted | cut -f 1-7,11 | \
 sed 's/\t\./\t1/g' > ${CHR}_sift_scores.bed
 
-
 # Remove tmp files:
-#rm cds.bed
-#rm A_*
-#rm C_*
-#rm G_*
-#rm T_*
-
+rm cds.bed
+rm A_*
+rm C_*
+rm G_*
+rm T_*
