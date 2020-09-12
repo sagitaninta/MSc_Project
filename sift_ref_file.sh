@@ -40,7 +40,7 @@ done
 # Create bed file with all sift positions:
 bedops -u *min.bed | awk '{print $1 "\t" $2 "\t" $3}' | uniq > all_sift_positions.bed
 
-# Overlap sift scores for each allele with all positions (replace coloumns with no score with 1
+# Overlap sift scores for each allele with all positions (replace columns with no score with 1
 # - will be 0 in calculation:
 
 sed 's/^chr//' cds.bed | bedtools intersect -a all_sift_positions.bed -b - -sorted -wb | cut -f 1-3,7 | \
