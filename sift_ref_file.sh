@@ -8,7 +8,6 @@ mv $1 $CHR
 cd $CHR
 
 ## Filter out cds and intersect with ancestral alleles:
-
 gunzip -c $1 | awk '$3~"CDS"' | grep -v ncRNA_gene | grep -v pseudo | \
 sort -k1,1 -k4,4n | bedtools merge -i - | bedops --chop - | sed 's/^/chr/' | \
 bedtools getfasta -fi ../../../Pipeline_files/07_07_tests/AndeanFox_canFam3.1.fa -bed - -bedOut | \
@@ -42,7 +41,6 @@ bedops -u *min.bed | awk '{print $1 "\t" $2 "\t" $3}' | uniq > all_sift_position
 
 # Overlap sift scores for each allele with all positions (replace columns with no score with 1
 # - will be 0 in calculation:
-
 sed 's/^chr//' cds.bed | bedtools intersect -a all_sift_positions.bed -b - -sorted -wb | cut -f 1-3,7 | \
 bedtools intersect -a - -b A_sift_min.bed -loj -sorted | cut -f 1-4,8 | \
 bedtools intersect -a - -b C_sift_min.bed -loj -sorted | cut -f 1-5,9 | \
@@ -50,11 +48,9 @@ bedtools intersect -a - -b G_sift_min.bed -loj -sorted | cut -f 1-6,10 | \
 bedtools intersect -a - -b T_sift_min.bed -loj -sorted | cut -f 1-7,11 | \
 sed 's/\t\./\t1/g' > ${CHR}_sift_scores.bed
 
-
 # Remove tmp files:
 rm cds.bed
 rm A_*
 rm C_*
 rm G_*
 rm T_*
-
