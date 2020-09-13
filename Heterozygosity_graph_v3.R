@@ -4,22 +4,18 @@ library(wesanderson)
 setwd("~/Masters/Project/Heterozygosity_sfs_estimates/")
 
 ############## Code for heterozygosity plot with CIs ##############
-
 ##### Get heterozygosity values and CIs from bootstraps #####
-
 ## Set file lists:
 file_list <- readLines("ml_list.txt")
 bootstrap_list <- readLines("bootstrap_list.txt")
 
 ## Set vectors to store values in:
-
 all_samples <- c()     #Sample names
 all_het <- c()         # Heterozygosity values
 all_upper <- c()       # Upper CIs
 all_lower <- c()       # Lower CIs
 
 ## Loop through files line by line to get names, het values and CIs for each sample:
-
 for(line in 1:length(file_list)) {
   # Scan in files:
   sfs <- scan(file_list[line])
@@ -44,7 +40,6 @@ for(line in 1:length(file_list)) {
 }
 
 ###### Create dataframe of values to use for graph #####
-
 #Set group if wanted for key:
 group <- c("Dog - Breed", "Dog - Breed", "Wolf", "Dog - Non-breed", "Dog - Non-breed", "Wolf", "Coyote", "Wolf", "Wolf", "Wolf")
 
@@ -64,10 +59,7 @@ het_df <- het_df[c(1:2, 4:5, 3, 6, 8:10, 7),] # Sort manually
 # Change sample and group to factors (so orders and colours by factor not per bar):
 het_df$Sample <- factor(het_df$Sample, levels = het_df$Sample) # If using original sample names
 het_df$Names <- factor(het_df$Names, levels = het_df$Names) # If using shortened/ edited names
-
 het_df$Group <- factor(het_df$Group, levels = unique(het_df$Group)) # Keeps order of df rows
-
-
 
 ## Plot graph with ggplot: 
 # Set colours:
@@ -86,27 +78,9 @@ heterozygosity_plot <- ggplot(data = het_df, aes(x = Names, y = Heterozygosity, 
   
 heterozygosity_plot
 
-# Plot graph horizontal bars:
-heterozygosity_plot_horiz <- ggplot(data = het_df, aes(x = Heterozygosity, y = Names, fill = Group)) + geom_bar(stat = "Identity") +
-  theme_classic() + ylab(NULL) +
-  scale_fill_manual(values = cols, guide = guide_legend(reverse = TRUE)) + # Specify colours
-  geom_errorbar(aes(xmin = LowerCI, xmax = UpperCI), width = 0.1) + # Add error bars
-  ggtitle("Heterozygosity estimates for chromosome 10 across ten canine samples") + # Add title 
-  theme(plot.title = element_text(size = 10, face = "bold", hjust = 0.5, margin = margin(10, 10, 10, 10), vjust = 5)) + # Modify title size and position
-  theme(axis.text.x = element_text(vjust = 0.5)) + # Move sample labels
-  theme(axis.title.y = element_text(vjust = 2))  #+ # Move y axis title
-
-heterozygosity_plot_horiz
-
 ##### Save plot as pdf #####
-
 pdf(file = "Heterozygosity_plot_verticalbars.pdf", width = 12, height = 8)
 heterozygosity_plot
-dev.off()
-
-
-pdf(file = "Heterozygosity_plot_horizontalbars.pdf", width = 12, height = 8)
-heterozygosity_plot_horiz
 dev.off()
 
 write.table(het_df, file = "all_het.csv", sep = "\t")
