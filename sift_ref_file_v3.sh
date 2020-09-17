@@ -3,11 +3,9 @@
 ## Change folder to run script in:
 CHR=chr${1:48:-8} # Extract chromosome name
 
-mv $1 test/
-cd test/
-#mkdir $CHR
-#mv $1 $CHR
-#cd $CHR
+mkdir $CHR
+mv $1 $CHR
+cd $CHR
 
 ## Filter out cds and intersect with ancestral alleles:
 
@@ -34,7 +32,7 @@ sed 's/chr//' ${CHR}_anc_cds.bed | awk '{print $1 "\t" $2+1 "\t" $3 "\t" $4"/"}'
 
 # Run vep:
 time vep -i ${CHR}_${i}_cds.bed --offline --cache --dir ../ \
---species "canis_lupus_familiaris" --force_overwrite --sift b --tab -o ${i}_vep.txt \
+--species "canis_lupus_familiaris" --force_overwrite --sift b --tab -o ${CHR}_${i}_vep.txt \
 --fields "Location,Allele,Consequence,SIFT"
 
 # Extract high confidence sift scores from vep output file:
@@ -50,21 +48,20 @@ done
 ## Combine sift scores into one file:
 
 # Create bed file with all sift positions:
-bedops -u *min.bed | awk '{print $1 "\t" $2 "\t" $3}' | uniq > all_sift_positions.bed
+bedops -u *min.bed | awk '{print $1 "\t" $2 "\t" $3}' | uniq > ${CHR}_all_sift_positions.bed
 
 # Overlap sift scores for each allele with all positions (replace columns with no score with 1
 # - will be 0 in calculation:
 
-sed 's/^chr//' anc_cds.bed | bedtools intersect -a all_sift_positions.bed -b - -sorted -wb | cut -f 1-3,7 | \
-bedtools intersect -a - -b A_sift_min.bed -loj -sorted | cut -f 1-4,8 | \
-bedtools intersect -a - -b C_sift_min.bed -loj -sorted | cut -f 1-5,9 | \
-bedtools intersect -a - -b G_sift_min.bed -loj -sorted | cut -f 1-6,10 | \
-bedtools intersect -a - -b T_sift_min.bed -loj -sorted | cut -f 1-7,11 | \
+sed 's/^chr//' ${CHR}_anc_cds.bed | bedtools intersect -a ${CHR}_all_sift_positions.bed -b - -sorted -wb | cut -f 1-3,7 | \
+bedtools intersect -a - -b ${CHR}_A_sift_min.bed -loj -sorted | cut -f 1-4,8 | \
+bedtools intersect -a - -b ${CHR}_C_sift_min.bed -loj -sorted | cut -f 1-5,9 | \
+bedtools intersect -a - -b ${CHR}_G_sift_min.bed -loj -sorted | cut -f 1-6,10 | \
+bedtools intersect -a - -b ${CHR}_T_sift_min.bed -loj -sorted | cut -f 1-7,11 | \
 sed 's/\t\./\t1/g' > ${CHR}_sift_scores.bed
 
 
 # Remove tmp files:
-#rm cds.bed
 rm A_*
 rm C_*
 rm G_*
