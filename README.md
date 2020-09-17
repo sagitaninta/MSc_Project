@@ -17,7 +17,6 @@ Obtaining posterior probabilities:
 
 Calculating load scores from BAM file and reference score file:  
 [Conservation load score script](https://github.com/DebGreer/MSc_Project/blob/master/mut_load_calculator_v3.py)
-
 [SIFT load score script](https://github.com/DebGreer/MSc_Project/blob/master/sift_calculator_v2.py)
 
 Overall pipeline:
