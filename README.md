@@ -8,8 +8,7 @@ Identifying ancestral alleles script
 [Creating conservation a score reference file explainer](https://github.com/DebGreer/MSc_Project/blob/master/Creating%20a%20conservation%20score%20reference%20file.md)  
 [R liftover script](https://github.com/DebGreer/MSc_Project/blob/master/liftOver_apocrita.R)
 
-Creating SIFT score script - linux and python
-
+[Creating SIFT score script](https://github.com/DebGreer/MSc_Project/blob/master/sift_ref_file_v3.sh)
 
 ### Overall pipeline
 Apocrita script
@@ -25,3 +24,5 @@ SIFT score script
 [R analysis script](https://github.com/DebGreer/MSc_Project/blob/master/Analysis_MSc_v6.R) - plots, stats, sample map
 
 Coverage calculation
+
+[Heterozygosity graph](https://github.com/DebGreer/MSc_Project/blob/master/Heterozygosity_graph_v3.R)
