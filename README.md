@@ -32,3 +32,4 @@ Overall pipeline:
 Supplementary figures:  
 [Heterozygosity graph](https://github.com/DebGreer/MSc_Project/blob/master/Heterozygosity_graph_v3.R)  
 [Prior comparison](https://github.com/DebGreer/MSc_Project/blob/master/Prior_comparison_v2.R)  
+[Downsampling tests](https://github.com/DebGreer/MSc_Project/blob/master/Downsampling_tests.R)
