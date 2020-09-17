@@ -127,7 +127,4 @@ bedtools getfasta -fi AndeanFox_canFam3.1.fa -bed - -bedOut
 bedtools intersect -a anc_phylop_phastcons.bed  -b all_phylop_phastcons_scores.bed -wa -wb -sorted | cut -f 1-4,8-9 > anc_scores_ref.bed
 ```
 
-Now your reference file should be ready to go! 
-
-### References/software used:  
-
+The reference file should then be ready to go - it can be further split e.g. into autosomes and X chromsomes.
