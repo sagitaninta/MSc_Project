@@ -1,4 +1,4 @@
-## Appendix - code
+## Appendix of code
 Link to MSc project github repository: (https://github.com/DebGreer/MSc_Project)  
 Links to code for all sections of the pipeline and producing graphs and statistics are included below: 
 
