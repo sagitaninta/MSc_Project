@@ -3,11 +3,11 @@
 #$ -cwd           #Run in current working directory  
 #$ -V             #Make verbose
 #$ -j y           #Join stdout and stderr
-#$ -pe smp 1      #Request 4 cores
-#$ -l h_rt=24:0:0 #One hour runtime
-#$ -l h_vmem=3G   #4G per core (16GB RAM total)
-#$ -t 1-10  #Number of bams/jobs to run
-#$ -tc 3 
+#$ -pe smp 1      #Request 1 core
+#$ -l h_rt=24:0:0 #24 hour runtime
+#$ -l h_vmem=3G   #3G per core (3GB RAM total)
+#$ -t 1-10        #Number of bams/jobs to run
+#$ -tc 3          # Task concurrency
 
 module load angsd
 module load python
