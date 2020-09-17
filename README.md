@@ -22,6 +22,6 @@ SIFT score script
 
 ### Statistical analyses, figures and metadata
 
-R analysis script
+[R analysis script](https://github.com/DebGreer/MSc_Project/blob/master/Analysis_MSc_v6.R) - plots, stats, sample map
 
 Coverage calculation
