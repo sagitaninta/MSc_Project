@@ -20,7 +20,7 @@ Calculating load scores from BAM file and reference score file:
 
 [SIFT load score script](https://github.com/DebGreer/MSc_Project/blob/master/sift_calculator_v2.py)
 
-Overall pipeline:  
+Overall pipeline:
 [Example array script](https://github.com/DebGreer/MSc_Project/blob/master/array_pipeline_combined_modern_set4_1.sh)
 
 #### Statistical analyses, figures and metadata
