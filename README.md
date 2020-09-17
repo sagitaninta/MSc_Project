@@ -22,9 +22,9 @@ Links to code for all sections of the pipeline and producing graphs and statisti
 
 ### Statistical analyses, figures and metadata
 
-[R analysis script](https://github.com/DebGreer/MSc_Project/blob/master/Analysis_MSc_v6.R) - plots, stats, sample map
+[R analysis script - plots, stats, sample map](https://github.com/DebGreer/MSc_Project/blob/master/Analysis_MSc_v6.R) 
 
-Coverage calculation
+[Coverage calculation]()
 
 [Heterozygosity graph](https://github.com/DebGreer/MSc_Project/blob/master/Heterozygosity_graph_v3.R)
 
