@@ -5,8 +5,8 @@ Links to code for all sections of the pipeline and producing graphs and statisti
 ### Creating reference files
 Identifying ancestral alleles script
 
-Creating conservation scores reference file explainer
-R liftover script
+[Creating conservation a score reference file explainer](https://github.com/DebGreer/MSc_Project/blob/master/Creating%20a%20conservation%20score%20reference%20file.md)  
+[R liftover script](https://github.com/DebGreer/MSc_Project/blob/master/liftOver_apocrita.R)
 
 Creating SIFT score script - linux and python
 
