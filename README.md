@@ -18,7 +18,7 @@ Links to code for all sections of the pipeline and producing graphs and statisti
 
 [Conservation load score script](https://github.com/DebGreer/MSc_Project/blob/master/mut_load_calculator_v3.py)
 
-[SIFT load score script]()
+[SIFT load score script](https://github.com/DebGreer/MSc_Project/blob/master/sift_calculator_v2.py)
 
 ### Statistical analyses, figures and metadata
 
