@@ -59,7 +59,6 @@ to other species can be found at http://hgdownload.cse.ucsc.edu/goldenpath/hg19/
 rsync -avz --progress rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/hg19ToCanFam3.over.chain.gz . 
 ```
 2a. Run command line liftOver:  
-(Add in)
 
 OR  
 
