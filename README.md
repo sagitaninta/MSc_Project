@@ -1,4 +1,4 @@
-## MSc Project - Overview
+## Code appendix - links to github repository and individual scripts used in analysis
 Link to MSc project github repository: (https://github.com/DebGreer/MSc_Project)  
 Links to code for all sections of the pipeline and producing graphs and statistics are included below: 
 
