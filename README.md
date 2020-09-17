@@ -24,7 +24,7 @@ Links to code for all sections of the pipeline and producing graphs and statisti
 
 [R analysis script - plots, stats, sample map](https://github.com/DebGreer/MSc_Project/blob/master/Analysis_MSc_v6.R) 
 
-[Coverage calculation]()
+[Coverage calculation](https://github.com/DebGreer/MSc_Project/blob/master/coverage_calculator.sh)
 
 [Heterozygosity graph](https://github.com/DebGreer/MSc_Project/blob/master/Heterozygosity_graph_v3.R)
 
