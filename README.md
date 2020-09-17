@@ -3,14 +3,14 @@ Link to MSc project github repository: (https://github.com/DebGreer/MSc_Project)
 Links to code for all sections of the pipeline and producing graphs and statistics are included below: 
 
 #### Creating reference files
-Ancestral alleles:
+Ancestral alleles:  
 [Identifying ancestral alleles script](https://github.com/DebGreer/MSc_Project/blob/master/anc_seq_v1.py)  
 
-Conservation scores:
+Conservation scores:  
 [Creating a conservation score reference file explainer/command summary](https://github.com/DebGreer/MSc_Project/blob/master/Creating%20a%20conservation%20score%20reference%20file.md)  
 [R liftover script](https://github.com/DebGreer/MSc_Project/blob/master/liftOver_apocrita.R)  
 
-Sift scores:
+Sift scores:  
 [Parallel script for running sift score script for each chromosome](https://github.com/DebGreer/MSc_Project/blob/master/parallel_sift_all.sh)  
 [Creating SIFT score reference file script](https://github.com/DebGreer/MSc_Project/blob/master/sift_ref_file_v3.sh)  
 
@@ -23,14 +23,11 @@ Calculating load scores from BAM file and reference score file:
 [SIFT load score script](https://github.com/DebGreer/MSc_Project/blob/master/sift_calculator_v2.py)  
 
 Overall pipeline:  
-[Example array script](https://github.com/DebGreer/MSc_Project/blob/master/array_pipeline_combined_modern_set4_1.sh)
+[Example array script](https://github.com/DebGreer/MSc_Project/blob/master/array_pipeline_combined_modern_set4_1.sh)  
 
 #### Statistical analyses, figures and metadata
 
-[R analysis script - plots, stats, sample map](https://github.com/DebGreer/MSc_Project/blob/master/Analysis_MSc_v6.R) 
-
-[Coverage calculation](https://github.com/DebGreer/MSc_Project/blob/master/coverage_calculator.sh)
-
-[Heterozygosity graph](https://github.com/DebGreer/MSc_Project/blob/master/Heterozygosity_graph_v3.R)
-
-[Prior comparison](https://github.com/DebGreer/MSc_Project/blob/master/Prior_comparison_v2.R)
+[R analysis script - plots, stats, sample map](https://github.com/DebGreer/MSc_Project/blob/master/Analysis_MSc_v6.R)  
+[Coverage calculation](https://github.com/DebGreer/MSc_Project/blob/master/coverage_calculator.sh)  
+[Heterozygosity graph](https://github.com/DebGreer/MSc_Project/blob/master/Heterozygosity_graph_v3.R)  
+[Prior comparison](https://github.com/DebGreer/MSc_Project/blob/master/Prior_comparison_v2.R)  
