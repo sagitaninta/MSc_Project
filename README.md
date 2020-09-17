@@ -28,6 +28,6 @@ Overall pipeline:
 #### Statistical analyses, figures and metadata
 [R analysis script - plots, stats, sample map](https://github.com/DebGreer/MSc_Project/blob/master/Analysis_MSc_v6.R)  
 [Coverage calculation](https://github.com/DebGreer/MSc_Project/blob/master/coverage_calculator.sh)  
-Supplementary figures:
+Supplementary figures:  
 [Heterozygosity graph](https://github.com/DebGreer/MSc_Project/blob/master/Heterozygosity_graph_v3.R)  
 [Prior comparison](https://github.com/DebGreer/MSc_Project/blob/master/Prior_comparison_v2.R)  
