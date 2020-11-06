@@ -54,22 +54,34 @@ As scores are for an alignment to the human genome, these need to be lifted over
 This can be done using the UCSC liftOver tool or using the R package rtracklayer. Chain files for lifting over co-ordinates from hg19  
 to other species can be found at http://hgdownload.cse.ucsc.edu/goldenpath/hg19/liftOver/
 
+The liftOver software can be downloaded for free if are used for non-profit academic research at the [UCSC Genome Browser Store](https://genome-store.ucsc.edu/) (yes, you have to register first). If you find this difficult, there is an R script that wrap liftOver as shown below.
+
 1. Download the chain file for the species of interest (in this case the dog reference genome):
 ```linux
 rsync -avz --progress rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/hg19ToCanFam3.over.chain.gz . 
 ```
-2a. Run command line liftOver:  
+2. Run liftOver on the filtered bed files through either 
+
+a. ...command line interface:  
+```linux
+ls filtered_*.bed > filtered_bed_list.txt
+while read -r line
+do
+        liftover $line hg19ToCanFam3.over.chain.gz ${line%.bed}_CanFam3_lifted ${line%.bed}_CanFam3_unlifted
+done < filtered_bed_list.txt
+```
 
 OR  
 
-2b. Run R implementation of liftOver:
+b. ...R implementation of liftOver:
 ```linux
 # Loop to run R script on each bed file:
 while read -r line 
 do
         Rscript liftOver.R  $line 
-done < bed_list.txt
+done < filtered_bed_list.txt
 ```
+
 liftOver.R content:
 ```R
 # Load rtracklayer and command line args
